@@ -5,6 +5,7 @@ import java.util.Queue;
  * A self-balancing binary search tree that holds objects that extend the Comparable interface.
  * 
  * @author Nathan Mette, Jeziel Banos-Gonzalez, Tony Zhang
+ * @version 1.0, 04/05/24, Java 17
  * 
  * @see Comparable
  */
@@ -27,6 +28,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Constructor if given the root
 	 * 
 	 * @param root the root of the tree to copy.
+	 * @author Nathan Mette
 	 */
 	public AVLTree(Node<T> root) {
 		this.root = root;
@@ -38,8 +40,8 @@ public class AVLTree<T extends Comparable<T>> {
 	 * <p>
 	 * If a node with the value already exists, increment the count of that node by 1.
 	 * 
-	 * @author Nathan Mette
 	 * @param value the value to be inserted
+	 * @author Nathan Mette
 	 */
 	public void insert(T value) {
 		root = insertHelper(root, value);
@@ -48,10 +50,10 @@ public class AVLTree<T extends Comparable<T>> {
 	/**
 	 * Insert a new value into the AVLTree recursively.
 	 * 
-	 * @author Nathan Mette, Jeziel Banos-Gonzalez
 	 * @param curr  the node to be evaluated for insertion
 	 * @param value the value to be inserted
 	 * @return The current node.
+	 * @author Jeziel Banos-Gonzalez w/ support from Nathan Mette
 	 */
 	private Node<T> insertHelper(Node<T> curr, T value) {
 		if (curr == null) {
@@ -74,7 +76,7 @@ public class AVLTree<T extends Comparable<T>> {
 
 		if (curr.weight >= 2) {
 			curr = rotateLeft(curr);
-		} else if (root.weight <= -2) {
+		} else if (curr.weight <= -2) {
 			curr = rotateRight(curr);
 		}
 
@@ -88,9 +90,9 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Assumes Node passed is the root of the tree being
 	 * rotated.
 	 * 
-	 * @author Nathan Mette
 	 * @param root the root of the subtree to be rotated left
 	 * @return The new root of the subtree.
+	 * @author Nathan Mette
 	 */
 	private Node<T> rotateLeft(Node<T> root) {
 		if (root.right == null) {
@@ -121,9 +123,9 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Assumes Node passed is the root of the tree being
 	 * rotated.
 	 * 
-	 * @author Nathan Mette
 	 * @param root the root of the subtree to be rotated right
 	 * @return The new root of the subtree.
+	 * @author Nathan Mette
 	 */
 	private Node<T> rotateRight(Node<T> root) {
 		if (root.left == null) {
@@ -149,10 +151,11 @@ public class AVLTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Searches for a specific value
+	 * Searches for a specific value within the tree
 	 * 
 	 * @param value the value to be searched for
 	 * @return the value that the user want
+	 * @author Jeziel Banos Gonzalez
 	 */
 	public T search(T value) {
 		return searchHelper(root, value);
@@ -164,6 +167,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * @param root  the root
 	 * @param value the value to search for
 	 * @return the value if found, null if not
+	 * @author Jeziel Banos Gonzalez
 	 */
 	private T searchHelper(Node<T> root, T value) {
 		Node<T> tempRoot = root;
@@ -189,6 +193,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Finds the minimum of the tree
 	 * 
 	 * @return the minimum value
+	 * @author Tony Zhang
 	 */
 	public T getMin() {
 		Node<T> tempNode = root;
@@ -206,6 +211,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Returns the max of the tree
 	 * 
 	 * @return the maximum value
+	 * @author Tony Zhang
 	 */
 	public T getMax() {
 		Node<T> tempNode = root;
@@ -223,6 +229,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * The public function users have access to, to delete from the tree.
 	 * 
 	 * @param value of type T
+	 * @author Jeziel Banos Gonzalez
 	 */
 	public void deleteValue(T value) {
 		/*
@@ -239,6 +246,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * @param root  Node
 	 * @param value of type T that matches what type the Node holds
 	 * @return a Node, which is an updated "root"
+	 * @author Jeziel Banos Gonzalez
 	 */
 	private Node<T> deleteHelper(Node<T> root, T value) {
 		/*
@@ -315,6 +323,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * 
 	 * @param root the node to be searched at
 	 * @return value of the node
+	 * @author Jeziel Banos Gonzalez
 	 */
 	private Node<T> findNodeToReplace(Node<T> root) {
 		Node<T> minValueNode = root;
@@ -331,6 +340,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * @param insertValue the value to check
 	 * @param nodeValue   the value at location
 	 * @return -1, 0, or 1 if less, equals, or greater
+	 * @author Tony Zhang
 	 */
 	private int compare(T insertValue, T nodeValue) {
 		return insertValue.compareTo(nodeValue);
@@ -340,6 +350,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Gets the size of the tree (# of nodes)
 	 * 
 	 * @return the size of the tree
+	 * @author Tony Zhang
 	 */
 	public int getSize() {
 		return size;
@@ -349,6 +360,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Gets the left value of the root
 	 * 
 	 * @return the left value of the root
+	 * @author Tony Zhang
 	 */
 	public T getLeft() {
 		return root.left.value;
@@ -358,6 +370,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * Gets the right value of the root
 	 * 
 	 * @return the right value of the root
+	 * @author Tony Zhang
 	 */
 	public T getRight() {
 		return root.right.value;
@@ -368,6 +381,7 @@ public class AVLTree<T extends Comparable<T>> {
 	 * 
 	 * @param curr the current node that is is given
 	 * @return the current node's heights
+	 * @author Nathan Mette
 	 */
 	private int recalcHeightOfNode(Node<T> curr) {
 		int rightHeight = (curr.right != null) ? curr.right.height : -1;
@@ -376,27 +390,27 @@ public class AVLTree<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Calculates the weights of the root given
+	 * Calculates the weights of the node given
 	 * 
-	 * @param root the node that is given to be calculated
-	 * @return the weight
+	 * @param curr the node that is given to be calculated
+	 * @return Weight of the node.
+	 * @author Nathan Mette
 	 */
-	private int recalcWeightOfNode(Node<T> root) {
-		root.weight = 0;
-		if (root.right != null) {
-			root.weight += (root.right.height + 1);
+	private int recalcWeightOfNode(Node<T> curr) {
+		curr.weight = 0;
+		if (curr.right != null) {
+			curr.weight += (curr.right.height + 1);
 		}
-		if (root.left != null) {
-			root.weight -= (root.left.height + 1);
+		if (curr.left != null) {
+			curr.weight -= (curr.left.height + 1);
 		}
-		return root.weight;
+		return curr.weight;
 	}
 
 	/**
-	 * prints the tree in breath first search order
+	 * Prints the tree in breath first search order
 	 * 
-	 * @param nonde
-	 * @return node
+	 * @author Tony Zhang
 	 */
 	public void printTree() {
 		// linked list that keeps track of the order of visited nodes

@@ -5,6 +5,14 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * JUnit testcases for AVLTree.java.
+ * <p>
+ * WARNING: Please ensure JUnit 5 is installed and enabled to run this code.
+ * 
+ * @author Nathan Mette
+ * @version 1.0, 04/05/24, Java 17, JUnit 5
+ */
 class AVLTreeTest {
 	
 	
@@ -14,7 +22,7 @@ class AVLTreeTest {
 	 */
 	@Test
 	void heightTest() {
-		Random rand = new Random();
+		Random rand = new Random(4);
 		HashSet<Integer> numbers = new HashSet<>();
 		AVLTree<Integer> currTree = new AVLTree<>();
 		for (int i = 0; i < 100; i++) {
